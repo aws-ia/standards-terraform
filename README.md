@@ -1,1 +1,1 @@
-## Terraform Moduule Standards 
+## Terraform Module Standards 
