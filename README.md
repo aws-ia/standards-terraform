@@ -1,5 +1,6 @@
 ![AWS-ia banner](/assets/ghbg.png)
 
+Guide Stage: `Alpha`
 > Note: AWS-ia Terraform standards are updated often. Please be sure to refer to this document often to keep updated!
 
 ## License
@@ -12,8 +13,8 @@
 **Child Modules:** A module that has been called by another module is often referred to as a child module.
 
 **Types of Reuseable AWS-ia Modules:**
-- AWS Service Modules: A container that provide sensibale default for deploying an AWS service based on AWS-ia standards _(Example:VPC/Aurora/SQS)_ 
-- Partner Modules: A container that leverags one or more _AWS Service Modules_ to build the infrastrure needed to instantiate a AWS partner product _(Example:Magento)_
+- AWS-ia Service Modules: A container that provide sensibale default for deploying an AWS service based on AWS-ia standards _(Example:VPC/Aurora/SQS)_ 
+- AWS-ia Partner Modules: A container that leverags one or more _AWS Service Modules_ to build the infrastrure needed to instantiate a AWS partner product _(Example:Magento)_
 
 ## Module Structure
 
@@ -82,7 +83,26 @@ Creates and Terraform workspace in TFC. See registry [link](https://registry.ter
 ## Development Standards
 
 ### Minimum Terraform Version 
-#### Supported `1.0.5`
 
-#### Root Module
-- module must not contain provider block definitions
+**Binary Version** `1.0.5`
+
+**Provider Version** ~> `v3.58.0`
+
+#### AWS-ia Module Standards
+Module `/main.tf` Must not contain provider block definitions
+
+Depoly Example `/deploy/main.tf` 
+ - When creating an example terraform cloud deployment for the module are creating refer to the source directly.
+```
+module "self_deployment_example" {
+source = "../"
+ ```
+ - If the example terraform cloud deployment requires a VPC or any other AWS Service use the Terraform registry path.
+ - Lock the version of any dependancies to the latest version at the time of release.
+```
+module "vpc" {
+  source    = "aws-ia/vpv/aws"
+  version   = "0.0.2"
+```
+ 
+
