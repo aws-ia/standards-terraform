@@ -1,6 +1,6 @@
 title: Terraform Standards
 logo: /assets/logonav.png
-description:  Terraform Module (Development Standard)
-show_downloads: true
+description:  AWS-ia development Standard
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-tactile
