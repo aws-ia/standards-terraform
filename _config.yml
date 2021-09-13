@@ -3,6 +3,6 @@ logo: /assets/logonav.png
 description:  Terraform
 show_downloads: false
 google_analytics:
-theme: jekyll-theme-leap-day
+theme: jekyll-theme-minimal
 github:
   is_project_page: true
