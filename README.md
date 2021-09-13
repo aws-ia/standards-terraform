@@ -1,2 +1,9 @@
 ![AWS-ia banner](/assets/ghbg.png)
-## Terraform Module Standards 
+## Module Structure
+
+## Module Standards
+
+## Deployments
+### Terraform Cloud
+
+### Local Backends
