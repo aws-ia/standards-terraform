@@ -4,9 +4,9 @@
 - Include Amazon NOTICE.txt
 ## Module Structure
 
-## Module Standards
-
 ## Deployments
 ### Terraform Cloud
 
 ### Local Backends
+
+## Development Standards
