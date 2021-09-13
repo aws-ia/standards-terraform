@@ -3,4 +3,4 @@ logo: /assets/logonav.png
 description:  Terraform
 show_downloads: false
 google_analytics:
-theme: jekyll-theme-tactile
+theme: jekyll-theme-dinky
