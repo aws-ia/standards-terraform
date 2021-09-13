@@ -1,4 +1,3 @@
-![AWS-ia banner](/assets/ghbg.png)
 
 Guide Stage: `Alpha`
 > Note: AWS-ia Terraform standards are updated often. Please be sure to refer to this document often to keep updated!
@@ -107,4 +106,5 @@ module "vpc" {
   }
 ```
  
+![AWS-ia banner](/assets/ghbg.png)
 
