@@ -5,4 +5,4 @@ show_downloads: false
 google_analytics:
 theme: jekyll-theme-dinky
 github:
-  is_project_page: false
+  is_project_page: true
