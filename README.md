@@ -11,6 +11,9 @@
 
 **Child Modules:** A module that has been called by another module is often referred to as a child module.
 
+**Types of Reuseable AWS-ia Modules:**
+- AWS Service Modules: A container that provide sensibale default for deploying an AWS service based on AWS-ia standards _(Example:VPC/Aurora/SQS)_ 
+- Partner Modules: A container that leverags one or more _AWS Service Modules_ to build the infrastrure needed to instantiate a AWS partner product _(Example:Magento)_
 
 ## Module Structure
 
