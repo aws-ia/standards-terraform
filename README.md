@@ -68,6 +68,11 @@ module "workload" {
 # This module is intended to be called by one or more other modules and must not contain any provider blocks
 ```
 
+**File: /setup_workspace/**
+
+Creates and Terraform workspace in TFC. See registry [link](https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest) for more information
+
+
 ## Deployments
 ### Terraform Cloud
 
