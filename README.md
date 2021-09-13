@@ -10,3 +10,4 @@
 ### Local Backends
 
 ## Development Standards
+- Minimum Terraform Version Supported `1.0.5`
