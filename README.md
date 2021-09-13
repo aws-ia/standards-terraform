@@ -96,6 +96,7 @@ Depoly Example `/deploy/main.tf`
 ```
 module "self_deployment_example" {
 source = "../"
+}
  ```
  - If the example terraform cloud deployment requires a VPC or any other AWS Service use the Terraform registry path.
  - Lock the version of any dependancies to the latest version at the time of release.
@@ -103,6 +104,7 @@ source = "../"
 module "vpc" {
   source    = "aws-ia/vpv/aws"
   version   = "0.0.2"
+  }
 ```
  
 
