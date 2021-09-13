@@ -3,4 +3,4 @@ logo: /assets/logonav.png
 description:  Terraform Module (Development Standard)
 show_downloads: true
 google_analytics:
-theme: jekyll-theme-minimal
+theme: jekyll-theme-tactile
