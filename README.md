@@ -73,10 +73,11 @@ module "workload" {
 Creates and Terraform workspace in TFC. See registry [link](https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest) for more information
 
 
-## Deployments
-### Terraform Cloud
+## Deployment Tyoes
+**Local** - Write terraform state and configuration to local working dir
+**Terraform Cloud** Writes terraform state and configuration to remote TFC workspace and stream it locally
 
-### Local Backends
+> For more into in how to setup TFC Workspace refert to the [cloud_workspace module](https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest)
 
 ## Development Standards
 
