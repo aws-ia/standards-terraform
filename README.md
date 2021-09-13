@@ -1,6 +1,6 @@
 ![AWS-ia banner](/assets/ghbg.png)
 
-
+> Note: AWS-ia Terraform standards are updated often. Please be sure to refer to this document often to keep updated!
 
 ## License
 - Licensed under Apache 2.0
