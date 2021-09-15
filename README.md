@@ -6,14 +6,14 @@ Guide Stage: `Alpha`
 - Licensed under Apache 2.0
 - Include Amazon NOTICE.txt
 
-## Taxanomoy
-**Root Module:**  Every Terraform configuration has at least one module, typically known as its root module. In the case of AWS-ia modules the Root module are allways ment to be reuseable modules or build blocks. 
+## Taxonomy
+**Root Module:**  Every Terraform configuration has at least one module, typically known as its root module. In the case of AWS-ia modules the Root module is always meant to be made up of reuseable modules or build blocks. 
 
 **Child Modules:** A module that has been called by another module is often referred to as a child module.
 
 **Types of Reuseable AWS-ia Modules:**
-- AWS-ia Service Modules: A container that provide sensibale default for deploying an AWS service based on AWS-ia standards _(Example:VPC/Aurora/SQS)_ 
-- AWS-ia Partner Modules: A container that leverags one or more _AWS Service Modules_ to build the infrastrure needed to instantiate a AWS partner product _(Example:Magento)_
+- AWS-ia Service Modules: A container that provides a sensible default for deploying an AWS service based on AWS-ia standards _(Example:VPC/Aurora/SQS)_ 
+- AWS-ia Partner Modules: A container that leverags one or more _AWS Service Modules_ to build the infrastructure needed to instantiate an AWS partner product _(Example:Magento)_
 
 ## Module Structure
 
@@ -70,7 +70,7 @@ module "workload" {
 
 **File: /setup_workspace/**
 
-Creates and Terraform workspace in TFC. See registry [link](https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest) for more information
+Creates the Terraform workspace in TFC. See registry [link](https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest) for more information
 
 
 ## Deployment Tyoes
@@ -90,7 +90,7 @@ Creates and Terraform workspace in TFC. See registry [link](https://registry.ter
 #### AWS-ia Module Standards
 Module `/main.tf` Must not contain provider block definitions
 
-Depoly Example `/deploy/main.tf` 
+Deploy Example `/deploy/main.tf` 
  - When creating an example terraform cloud deployment for the module are creating refer to the source directly.
 ```
 module "self_deployment_example" {
