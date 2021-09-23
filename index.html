@@ -434,19 +434,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<!DOCTYPE html>
-<html  >
-<head>
-  <!-- Site made with Mobirise Website Builder v5.3.0, https://mobirise.com -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v5.3.0, mobirise.com">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/logonav.png" type="image/x-icon">
   <meta name="description" content="aws-ia">
-
-
-  <title>Home</title>
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
@@ -459,10 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   <link rel="stylesheet" href="assets/socicon/css/styles.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-
-
-
-
+  <link rel="stylesheet" href="assets/asciidoctor-override.css">
 </head>
 <body>
 
@@ -513,7 +503,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 AWS-ia Terraform standards are updated often. Please be sure to refer to this document often to keep updated!
@@ -635,14 +625,16 @@ module "workload" {
 <h2 id="_deployment_tyoes">Deployment Tyoes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Local</strong> - Write terraform state and configuration to local working dir
-<strong>Terraform Cloud</strong> Writes terraform state and configuration to remote TFC workspace and stream it locally</p>
+<p><strong>Local</strong> - Write terraform state and configuration to local working dir</p>
+</div>
+<div class="paragraph">
+<p><strong>Terraform Cloud</strong> Writes terraform state and configuration to remote TFC workspace and stream it locally</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 For more into in how to setup TFC Workspace refer to the <a href="https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest">cloud_workspace module</a>
