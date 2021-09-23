@@ -1,0 +1,4 @@
+:docinfo2:
+:docinfo1:
+:last-update-label!:
+:doctype: book
