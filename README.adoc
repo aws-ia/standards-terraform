@@ -60,12 +60,8 @@ module "workload_vpc" {
   version              = "0.0.3"
   name                 = "workload-vpc"
   region               = var.region
-  cidr                 = "10.0.0.0/16"
-  public_subnets       = ["10.0.0.0/20"]
-  private_subnets_A    = ["10.0.16.0/20", "10.0.32.0/20", "10.0.48.0/20"]
-  enable_dns_hostnames = true
-  tags                 = {}
   create_vpc           = true
+  ...
 }
 
 # Deploys example workload instance via root module
@@ -89,7 +85,7 @@ module "workload" {
 Creates the Terraform workspace in TFC. See https://registry.terraform.io/modules/aws-ia/cloud_workspace/hashicorp/latest[registry] for more information
 
 
-## Deployment Tyoes
+## Deployment Types
 
 **Local** - Write terraform state and configuration to local working dir
 
