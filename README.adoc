@@ -14,7 +14,9 @@ endif::[]
 
 Guide Stage: `Alpha`
 
-NOTE: AWS-ia Terraform standards are updated often. Please be sure to refer to this document often to keep updated!
+> NOTE: This program is in Aplha and such the recommendation are updated often. Please be sure to refer to this document often to keep updated!
+
+For FAQ please refer to https://faq.aws-ia.github.io/
 
 ## License
 - Licensed under Apache 2.0
