@@ -56,7 +56,7 @@ terraform {
   required_version = ">= 1.0.5"
 }
 
-# Use baseline VPC from aws-ia registery
+# Use baseline VPC from aws-ia registry
 module "workload_vpc" {
   source               = "aws-ia/vpc/aws"
   version              = "0.0.3"
@@ -120,6 +120,6 @@ module "self_deployment_example" {
 
 ```
 module "vpc" {
-  source    = "aws-ia/vpv/aws"
+  source    = "aws-ia/vpc/aws"
   version   = "0.0.2"
   }
