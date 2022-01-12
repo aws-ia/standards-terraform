@@ -1,0 +1,53 @@
+# https://gohugo.io/hugo-modules/configuration/
+
+# A optional Glob pattern matching module paths to skip when vendoring, e.g. “github.com/**”
+# noVendor = ''
+
+# When enabled, we will pick the vendored module closest to the module using it. The default behaviour is to pick the
+# first. Note that there can still be only one dependency of a given module path, so once it is in use it cannot be
+# redefined.
+# vendorClosest = false
+
+# Defines the proxy server to use to download remote modules. Default is direct, which means “git clone” and similar.
+# proxy = 'direct'
+
+# Comma separated glob list matching paths that should not use the proxy configured above.
+# noProxy = 'none'
+
+# Comma separated glob list matching paths that should be treated as private.
+# private = '*.*'
+
+# A comma separated (or a slice) list of module path to directory replacement mapping,
+# e.g. "github.com/bep/myprettytheme -> ../..,github.com/bep/shortcodes -> /some/path". This is mostly useful for
+# temporary locally development of a module, and then it makes sense to set it as an OS environment variable,
+# e.g: env HUGO_MODULE_REPLACEMENTS="github.com/bep/myprettytheme -> ../..". Any relative path relates to themesDir,
+# and absolute paths are allowed.
+# replacements = ''
+
+[hugoVersion]
+# Whether the extended version of Hugo is required.
+extended = true
+
+# The maximum Hugo version supported
+# max = ''
+
+# The minimum Hugo version supported.
+min = '0.60.0'
+
+# [[imports]]
+# Set to true to disable the module while keeping any version info in the go.* files.
+# disable = false
+
+# If enabled, any module configuration file, e.g. config.toml, will not be loaded. Note that this will also stop the
+# loading of any transitive module dependencies.
+# ignoreConfig = false
+
+# If enabled, module imports will not be followed.
+# ignoreImports = false
+
+# Do not mount any folder in this import.
+# noMounts = false
+
+# Can be either a valid Go Module module path, e.g. github.com/gohugoio/myShortcodes, or the directory name for the
+# module as stored in your themes folder.
+# path = 'github.com/theNewDynamic/gohugo-theme-ananke'

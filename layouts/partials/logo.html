@@ -1,0 +1,14 @@
+{{ $logo_path := "" }}
+{{ with .Site.Params.logoPath }}
+  {{ with resources.Get . }}
+    {{ $logo_path = .RelPermalink }}
+  {{ end }}
+{{ end }}
+
+{{ with $logo_path }}
+  <div>
+    <a href="/" title="Go home">
+        <img style="vertical-align:middle" src="{{- . -}}" height="200px" />
+    </a>
+  </div>
+{{ end }}

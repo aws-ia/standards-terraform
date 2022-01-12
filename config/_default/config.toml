@@ -1,0 +1,225 @@
+# https://gohugo.io/getting-started/configuration/
+
+# The directory where Hugo finds archetype files (content templates).
+# Default value: 'archetypes'
+archetypeDir = 'archetypes'
+
+# The directory where Hugo finds asset files used in Hugo Pipes.
+# Default value: 'assets'
+assetDir = 'assets'
+
+# Hostname (and path) to the root.
+baseURL = 'http://localhost/'
+
+# Include drafts when building.
+# Default value: false
+buildDrafts = true
+
+# Include content already expired.
+# Default value: false
+buildExpired = false
+
+# Include content with publishdate in the future.
+# Default value: false
+buildFuture = true
+
+# Enable to turn relative URLs into absolute.
+# Default value: false
+canonifyURLs = true
+
+# The directory from where Hugo reads content files.
+# Default value: 'content'
+contentDir = 'content'
+
+# Copyright notice for your site, typically displayed in the footer.
+# Default value: ''
+copyright = ', Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# The directory from where Hugo reads data files.
+# Default value: 'data'
+dataDir = 'data'
+
+# Content without language indicator will default to this language.
+# Default value: 'en'
+defaultContentLanguage = 'en'
+
+# Render the default content language in subdir, e.g. content/en/. The site root / will then redirect to /en/.
+# Default value: false
+defaultContentLanguageInSubdir = true
+
+# Will disable generation of alias redirects. Note that even if disableAliases is set, the aliases themselves are
+# preserved on the page. The motivation with this is to be able to generate 301 redirects in an .htaccess, a Netlify
+# _redirects file or similar using a custom output format.
+# Default value: false
+disableAliases = false
+
+# Hugo will, by default, inject a generator meta tag in the HTML head on the home page only. You can turn it off, but
+# we would really appreciate if you don’t, as this is a good way to watch Hugo’s popularity on the rise.
+# Default value: false
+disableHugoGeneratorInject = false
+
+# Enable disabling of all pages of the specified Kinds. Allowed values in this list: "page", "home", "section",
+# "taxonomy", "term", "RSS", "sitemap", "robotsTXT", "404".
+# Default value: []
+disableKinds = []
+
+# You can disable one or more languages. This can be useful when working on a new translation.
+# Default value: []
+# Example: ['fr', 'ja']
+disableLanguages = []
+
+# Disable automatic live reloading of browser window.
+# Default value: false
+disableLiveReload = false
+
+# Do not convert the url/path to lowercase.
+# Default value: false
+disablePathToLower = false
+
+# Enable Emoji emoticons support for page content; see the Emoji Cheat Sheet.
+# https://www.webpagefx.com/tools/emoji-cheat-sheet/
+# Default value: false
+enableEmoji = true
+
+# Enable .GitInfo object for each page (if the Hugo site is versioned by Git). This will then update the lastmod
+# parameter for each page using the last git commit date for that content file.
+# Default value: false
+enableGitInfo = true
+
+# Enable inline shortcode support. See Inline Shortcodes.
+# https://gohugo.io/templates/shortcode-templates/#inline-shortcodes
+enableInlineShortcodes = true
+
+# Show a placeholder instead of the default value or an empty string if a translation is missing.
+# Default value: false
+enableMissingTranslationPlaceholders = false
+
+# Enable generation of robots.txt file.
+# Default value: false
+enableRobotsTXT = true
+
+# Prefix for footnote anchors.
+# Default value: ''
+footnoteAnchorPrefix = ''
+
+# Text to display for footnote return links.
+# Default value: ''
+footnoteReturnLinkContents = ''
+
+# Google Analytics tracking ID.
+# Default value: ''
+googleAnalytics = ''
+
+# If true, auto-detect Chinese/Japanese/Korean Languages in the content. This will make .Summary and .WordCount behave
+# correctly for CJK languages.
+# Default value: false
+hasCJKLanguage = false
+
+# A language tag as defined by RFC 5646. The internal RSS template populates its <language> element with this value.
+# The value is not used elsewhere.
+# Default value: ''
+languageCode = 'en-us'
+
+# The editor to use when creating new content.
+# Default value: ''
+newContentEditor = ''
+
+# Don’t sync permission mode of files.
+# noChmod
+
+# Don’t sync modification time of files.
+# noTimes
+
+# Default number of elements per page in pagination.
+# Default value: 10
+paginate = 9
+
+# The path element used during pagination (https://example.com/page/2).
+# Default value: 'page'
+paginatePath = 'page'
+
+# Pluralize titles in lists.
+# Default value: true
+pluralizeListTitles = false
+
+# The directory to where Hugo will write the final static site (the HTML files etc.).
+# Default value: 'public'
+publishDir = 'public'
+
+# Enable this to make all relative URLs relative to content root. Note that this does not affect absolute URLs.
+# Default value: false
+relativeURLs = true
+
+# When using ref or relref to resolve page links and a link cannot resolved, it will be logged with this log level.
+# Valid values are ERROR (default) or WARNING. Any ERROR will fail the build (exit -1).
+# Default value: 'ERROR'
+# refLinksErrorLevel 'ERROR'
+
+# URL to be used as a placeholder when a page reference cannot be found in ref or relref. Is used as-is.
+# refLinksNotFoundURL
+
+# Removes non-spacing marks from composite characters in content paths.
+# Example: content/post/hügó.md --> https://example.org/post/hugo/
+# Default value: false
+removePathAccents = false
+
+# Undocumented
+resourceDir = 'resources'
+
+# Maximum number of items in the RSS feed.
+# Default value: -1
+rssLimit = -1
+
+# Section Menu for Lazy Bloggers
+# This will create a menu with all the sections as menu items and all the sections' pages as “shadow-members”. The
+# shadow implies that the pages isn’t represented by a menu-item themselves, but this enables you to create a top-level
+# menu.
+# Setting to 'main' will enable unless configured otherwise.
+# https://gohugo.io/templates/menu-templates/#section-menu-for-lazy-bloggers
+# Default value: ''
+sectionPagesMenu = 'main'
+
+# The length of text in words to show in a .Summary.
+# Default value: 70
+summaryLength = 70
+
+# The name of the theme to import from themesDir.
+theme = [
+  'learn',
+]
+
+# The directory where Hugo reads the themes from.
+# Default value: 'themes'
+themesDir = 'themes'
+
+# Timeout for generating page contents, specified as a duration or in milliseconds. Note: this is used to bail out of
+# recursive content generation. You might need to raise this limit if your pages are slow to generate (e.g., because
+# they require large image processing or depend on remote contents).
+# Default value: '30s'
+timeout = '30s'
+
+# The time zone (or location), e.g. Europe/Oslo, used to parse front matter dates without such information and in the
+# time function. The list of valid values may be system dependent, but should include UTC, Local, and any location in
+# the IANA Time Zone database.
+# https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timeZone = 'UTC'
+
+# Site title.
+title = "The AWS Integration & Automation team's best practices for Terraform"
+
+# Set titleCaseStyle to specify the title style used by the title template function and the automatic section titles in
+# Hugo. It defaults to AP Stylebook for title casing, but you can also set it to Chicago or Go (every word starts with
+# a capital letter).
+# Default value: 'AP'
+titleCaseStyle = 'AP'
+
+# When enabled, creates URL of the form /filename.html instead of /filename/.
+# Default value: false
+uglyURLs = false
+
+# Watch filesystem for changes and recreate as needed.
+# Default value: false
+watch = false
+
+pygmentsCodeFences = true
+pygmentsStyle = 'monokai'

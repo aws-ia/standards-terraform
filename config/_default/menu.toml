@@ -1,0 +1,17 @@
+[[shortcuts]]
+name = "<i class='fab fa-github'></i> GitHub"
+identifier = "github"
+url = 'https://github.com/aws-ia'
+weight = 10
+
+[[shortcuts]]
+name = "<i class='fab fa-aws'></i> Catalog"
+identifier = "catlog"
+url = 'https://aws.amazon.com/quickstart/architecture/terraform-modules-on-aws/'
+weight = 20
+
+[[shortcuts]]
+name = "Registry"
+identifier = "tf-registry"
+url = 'https://aws.amazon.com/quickstart/architecture/terraform-modules-on-aws/'
+weight = 30

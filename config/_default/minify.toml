@@ -1,0 +1,38 @@
+# https://gohugo.io/getting-started/configuration/?search-input=languageCode#configure-minify
+
+disableCSS = false
+disableHTML = false
+disableJS = false
+disableJSON = false
+disableSVG = false
+disableXML = false
+minifyOutput = false
+
+[tdewolff]
+
+[tdewolff.css]
+keepCSS2 = true
+precision = 0
+
+[tdewolff.html]
+keepComments = false
+keepConditionalComments = true
+keepDefaultAttrVals = true
+keepDocumentTags = true
+keepEndTags = true
+keepQuotes = false
+keepWhitespace = false
+
+[tdewolff.js]
+keepVarNames = false
+precision = 0
+
+[tdewolff.json]
+keepNumbers = false
+precision = 0
+
+[tdewolff.svg]
+precision = 0
+
+[tdewolff.xml]
+keepWhitespace = false

@@ -1,0 +1,4 @@
+baseURL = 'https://standards-terraform.aws-ia.github.io/'
+buildDrafts = false
+buildExpired = false
+buildFuture = false

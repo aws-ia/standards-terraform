@@ -1,0 +1,7 @@
+# https://gohugo.io/getting-started/configuration-markup#goldmark
+
+[goldmark.renderer]
+
+# By default, Goldmark does not render raw HTMLs and potentially dangerous links. If you have lots of inline HTML
+# and/or JavaScript, you may need to turn this on.
+unsafe = true

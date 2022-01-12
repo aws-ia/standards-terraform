@@ -1,0 +1,14 @@
+{{ $logo_path := "" }}
+{{ with .Site.Params.logoPath }}
+  {{ with resources.Get . }}
+    {{ $logo_path = .RelPermalink }}
+  {{ end }}
+{{ else }}
+  {{ with $.Resources.GetRemote $logo_path }}
+  {{ end }}
+{{ end }}
+
+{{ with $logo_path }}
+  <link rel="shortcut icon" href="{{- $logo_path -}}" type="image/png" />
+  <link rel="icon" href="{{- $logo_path -}}" type="image/png" />
+{{ end }}

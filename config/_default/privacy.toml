@@ -1,0 +1,58 @@
+# https://gohugo.io/about/hugo-and-gdpr/
+
+[disqus]
+disable = true
+
+[googleAnalytics]
+disable = true
+
+# Enabling this will make it so the users' IP addresses are anonymized within Google Analytics.
+anonymizeIP = true
+
+# Enabling this will make the GA templates respect the “Do Not Track” HTTP header.
+respectDoNotTrack = true
+
+# Enabling this will disable the use of Cookies and use Session Storage to Store the GA Client ID.
+useSessionStorage = true
+
+[instagram]
+disable = true
+
+# If simple mode is enabled, a static and no-JS version of the Instagram image card will be built. Note that this only
+# supports image cards and the image itself will be fetched from Instagram’s servers.
+simple = true
+
+# If you use the simple mode for Instagram and a site styled with Bootstrap 4, you may want to disable the inline
+# styles provided by Hugo.
+disableInlineCSS = true
+
+[twitter]
+disable = false
+
+# Enabling this for the twitter/tweet shortcode, the tweet and its embedded page on your site are not used for purposes
+# that include personalized suggestions and personalized ads.
+enableDNT = true
+
+# If simple mode is enabled, a static and no-JS version of a tweet will be built.
+simple = true
+
+# If you use the simple mode for Twitter, you may want to disable the inlines styles provided by Hugo.
+disableInlineCSS = true
+
+[vimeo]
+disable = true
+
+# Enabling this for the vimeo shortcode, the Vimeo player will be blocked from tracking any session data, including all
+# cookies and stats.
+enableDNT = false
+
+# If simple mode is enabled, the video thumbnail is fetched from Vimeo’s servers and it is overlayed with a play
+# button. If the user clicks to play the video, it will open in a new tab directly on Vimeo’s website.
+simple = false
+
+[youtube]
+disable = false
+
+# When you turn on privacy-enhanced mode, YouTube won’t store information about visitors on your website unless the
+# user plays the embedded video.
+privacyEnhanced = true
