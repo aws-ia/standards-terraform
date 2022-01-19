@@ -9,7 +9,7 @@ archetypeDir = 'archetypes'
 assetDir = 'assets'
 
 # Hostname (and path) to the root.
-baseURL = 'http://localhost/'
+baseURL = 'https://aws-ia.github.io/standards-terraform'
 
 # Include drafts when building.
 # Default value: false
