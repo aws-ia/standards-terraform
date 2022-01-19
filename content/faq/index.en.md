@@ -2,13 +2,13 @@
 
 ## AWS providers and associated modules demystified
 
-Terraform leverages providers to interact with infrastructure resources. In the case of AWS, there are two official providers available that can be used; the AWS Provider for Terraform, and the Terraform AWS Cloud Control Provider (AWSCC) provider. The AWS Provider for Terraform has been in existence for over 14 years, and is hand coded (with some code generated). AWSCC Provider is the newest provider and is automatically generated from the CloudFormation Registry which means new features and services can be supported in Terraform right away.
+Terraform leverages providers to interact with infrastructure resources. In the case of AWS, there are two official providers available that can be used; the AWS Provider for Terraform, and the Terraform AWS Cloud Control Provider (AWSCC) provider. The AWS Provider for Terraform has been in existence for over 14 years, and is hand coded (with some code generated). The AWSCC Provider is the newest provider and is automatically generated from the CloudFormation Registry which means new features and services can be supported in Terraform right away.
 
 Our partners at HashiCorp have a detailed blog post on this topic (https://www.hashicorp.com/blog/announcing-terraform-aws-cloud-control-provider-tech-preview). We encourage you to read that blog post.
 
 The AWS Integration & Automation (AWS I&A) team authors and publishes Terraform modules that have validated provenance. Modules use specific providers in their implementation, and for convenience we have decided on a naming convention that will allow you to know what provider is being used by the module you are leveraging. This naming convention is `terraform-<provider>-<modulename>`.
 
-For example, you will see a module named `terraform-aws-rds-aurora` which informs you that this module is leveraging the AWS Provider for Terraform. You would also see another module named `terraform-awscc-waf` which informs you that it is leveraging the AWSCC Provider. You can use both providers side by side and we often do when writing AWSCC modules. The long term goal is to build robust modules that fully utilize the AWSCC provider.
+For example, you will see a module named `terraform-aws-rds-aurora` which informs you that this module is leveraging the AWS Provider for Terraform. You would also see another module named `terraform-awscc-waf` which informs you that it is leveraging the AWSCC Provider. [You can use both providers side by side](https://www.hashicorp.com/blog/announcing-terraform-aws-cloud-control-provider-tech-preview#using-two-providers) and we often do when writing AWSCC modules. The long term goal is to build robust modules that fully utilize the AWSCC provider.
 
 We standardize on semantic versioning to provide assurance of compatibility and provide robust testing of modules to provide assurance of functionality.
 
