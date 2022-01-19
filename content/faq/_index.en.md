@@ -1,5 +1,11 @@
-# FAQ
-
++++
+title = 'Frequently asked questions (FAQ)'
+linkTitle = 'FAQ'
+description = 'Frequently asked questions of the AWS Integration & Automation team about Terraform standards'
+date = '2022-01-12'
+weight = 999
+chapter = true
++++
 ## AWS providers and associated modules demystified
 
 Terraform leverages providers to interact with infrastructure resources. In the case of AWS, there are two official providers available that can be used; the AWS Provider for Terraform, and the Terraform AWS Cloud Control Provider (AWSCC) provider. The AWS Provider for Terraform has been in existence for over 14 years, and is hand coded (with some code generated). The AWSCC Provider is the newest provider and is automatically generated from the CloudFormation Registry which means new features and services can be supported in Terraform right away.
@@ -40,9 +46,9 @@ In AWS I&A repos you will see a `user_agent` defined in the provider block. This
 
 ## Recommended deployment patterns for Terraform
 
-There are many ways to deploy or execute Terraform. We recommend either via [HashiCorp Terraform Cloud](https://github.com/aws-ia/terraform-hashicorp-cloud_workspace) or via [AWS S3 with DynamoDb for state locking](https://github.com/aws-ia/terraform-aws-backend-s3).
+There are many ways to deploy or execute Terraform. We recommend either via [HashiCorp Terraform Cloud](https://github.com/aws-ia/terraform-hashicorp-cloud_workspace) or via [AWS S3 with DynamoDB for state locking](https://github.com/aws-ia/terraform-aws-backend-s3).
 
 
 ## Are modules protected by CI Automation?
 
-Terraform Module PRs are subject to CI automation for quality, linting, and security scanning. Due to internal decisions, we have built a CI process that is currently private to AWS employees only. It is a heavy work-in-progress and we intend to expose information about it ASAP.
+Terraform Module pull requests (PRs) are subject to continuous integration (CI) automation for quality, linting, and security scanning. Due to internal decisions, we have built a CI process that is currently private to AWS employees only. It is a heavy work-in-progress and we intend to expose information about it ASAP.
