@@ -144,7 +144,7 @@ pluralizeListTitles = false
 
 # The directory to where Hugo will write the final static site (the HTML files etc.).
 # Default value: 'public'
-publishDir = 'public'
+publishDir = 'docs'
 
 # Enable this to make all relative URLs relative to content root. Note that this does not affect absolute URLs.
 # Default value: false
