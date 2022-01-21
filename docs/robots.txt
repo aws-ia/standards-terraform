@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+Sitemap: https://aws-ia.github.io/standards-terraform/sitemap.xml
+

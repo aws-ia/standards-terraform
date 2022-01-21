@@ -1,0 +1,8 @@
+User-agent: *
+{{ if eq hugo.Environment "production" }}
+Allow: /
+Sitemap: {{ .Site.BaseURL }}/sitemap.xml
+{{ else }}
+# robotstxt.org - if the build is not configured for production, robots will be disallowed.
+Disallow: /
+{{ end }}
