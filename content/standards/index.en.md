@@ -20,7 +20,7 @@ Publishing a Terraform module is the gold-standard for easing AWS customer on-bo
 * [Module Structure](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP330133c676b148a8873ae9fb6)
 * [Provider Configuration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXPc84490a0279c4dc1b658b7f84)
 * [General HCL Configuration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP8e81e80d16dd47fab227035f4)
-* [Variable Declaration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP2243865a3df64cd2b38a65be6)
+* [Variable & Output Declaration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP2243865a3df64cd2b38a65be6)
 * [Pull Request Guidelines](https://quip-amazon.com/QgkqApSYHSWA#temp:C:RXP5c55aba2196c41d6b4eb38d7d)
 
 ## Module Structure:
@@ -71,7 +71,7 @@ Please include your `go.mod` and `go.sum` files after running `go mod init githu
 
 **Service named files:**
 
-Often users want to create several files and separate terraform resources by service. This urge should be stifled as much as possible in favor defining resources in main.tf. When a specific sub-service (ie. one other than the main service being deployed) contains hundreds of lines on its own. For example, you can create `iam.tf` if there are iam resources that, when organized, are over 150 lines. Otherwise, all resources should be defined in `main.tf`.
+Often users want to create several files and separate terraform resources by service. This urge should be stifled as much as possible in favor defining resources in main.tf. If a collection of resources, for example IAM Roles and Policies, exceed 150 lines then it is reasonable to break that into its own files such as iam.tf. Otherwise all resource code should be defined in the main.tf.
 
 ## Provider Configuration Guidelines:
 
@@ -241,7 +241,7 @@ resource "aws_security_group_rule" "example" {
 
 Module variables are useful in most situations. Knowing which default values to set is crucial. Here we outline some usage patterns and advanced usage considerations.
 
-### Variable Declarations
+### Variable & Output Declarations
 
 All variables must have a defined `type` and `description`.
 
@@ -259,7 +259,7 @@ To account for situations like this, you can define the variable with a `default
 
 Terraform allows you to [validate the content](https://www.terraform.io/language/values/variables#custom-validation-rules) a user passes to a variable. This should be used as appropriate. Examples:
 
-**Can be either `assertion` or `gating`:**
+**Example: Can be either `assertion` or `gating`:**
 
 ```
 variable "safety_rule_type" {
@@ -274,7 +274,7 @@ variable "safety_rule_type" {
 }
 ```
 
-**Key in map must look like a valid AWS Region:**
+**Example: Key in map must look like a valid AWS Region:**
 
 ```
 variable "cells_definition" {
@@ -354,7 +354,6 @@ cells_definition = {
 }
 */
 
-
 validation {
   condition = alltrue([for _, k in keys(var.cells_definition) : can(regex("[a-z][a-z]-[a-z]+-[1-9]", k))]) && alltrue(flatten([
      for arns in var.cells_definition : [
@@ -366,6 +365,14 @@ validation {
 error_message = "Supported service names are the keys defined in var.resource_type_name."
 }
 ```
+
+## Output Guidelines
+
+Terraform allows you to provide formatted outputs from your modules. There are several ways to think about these. Many times you can assume which output values will be most relevant to your end user. When choosing which values to output think about:
+
+- How will your module be used in a root module?
+- How will your module be used as a `data.terraform_remote_state`?
+- Does it make sense to output entire resources instead of formatted output?
 
 ## Pull Request Guidelines
 
