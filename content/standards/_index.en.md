@@ -1,9 +1,9 @@
 +++
-title = 'AWS IA Terraform Module Standards'
-linkTitle = 'FAQ'
-description = 'Frequently asked questions of the AWS Integration & Automation team about Terraform standards'
-date = '2022-01-12'
-weight = 999
+title = 'Terraform Module Standards'
+linkTitle = 'Standards'
+description = 'AWS IA Terraform Module Standards'
+date = '2022-02-15'
+weight = 1
 chapter = true
 +++
 
@@ -17,13 +17,14 @@ Publishing a Terraform module is the gold-standard for easing AWS customer on-bo
 
 ## Table of Contents:
 
-* [Module Structure](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP330133c676b148a8873ae9fb6)
-* [Provider Configuration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXPc84490a0279c4dc1b658b7f84)
-* [General HCL Configuration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP8e81e80d16dd47fab227035f4)
-* [Variable & Output Declaration Guidelines](https://quip-amazon.com/QgkqApSYHSWA/IA-Terraform-Standards#temp:C:RXP2243865a3df64cd2b38a65be6)
-* [Pull Request Guidelines](https://quip-amazon.com/QgkqApSYHSWA#temp:C:RXP5c55aba2196c41d6b4eb38d7d)
+* [Module Structure](#-module-structure)
+* [Provider Configuration Guidelines](#-provider-configuration-guidelines)
+* [General HCL Configuration Guidelines](#-general-hcl-configuration-guidelines)
+* [Variable & Output Declaration Guidelines](#-variables-declaration-guidelines)
+* [Output Declaration Guidelines](#-output-guidelines)
+* [Pull Request Guidelines](#-pull-request-guidelines)
 
-## Module Structure:
+## Module Structure
 
 All modules must maintain a similar structure that contains module code, examples, sub-modules (optional), and functional tests. These are laid out in our terraform repo template as boilerplate but are also detailed here:
 
@@ -61,19 +62,20 @@ Please include your `go.mod` and `go.sum` files after running `go mod init githu
 
 * `main.tf` - Your Terraform resources
 * `outputs.tf` - Module outputs
-* `versions.tf` - The [terraform block](https://www.terraform.io/language/settings) with `required_providers`
+* `provider.tf` - The [terraform block](https://www.terraform.io/language/settings) with `required_providers`
 * `variables.tf` - Variable declarations
 
 **Other common files:**
 
 * `data.tf` - Includes `locals` declarations and data sources. Note: its common to have an occasional local or data source in main.tf instead.
-* `provider.tf` - Included if you have alias’ed providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/provider.tf) This convention comes from the `terraform0.12-upgrade` command where once terraform code was upgraded from v0.11.x to v0.12.x a `versions.tf` file was create to enforce `terraform { required_version = ">= 0.12.0}"`
+* `alias.tf` - Included if you have alias’ed providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/alias.tf)
+* `versions.tf` - Alternate name for `provider.tf`. This convention comes from the `terraform0.12-upgrade` command where once terraform code was upgraded from v0.11.x to v0.12.x a `versions.tf` file was create to enforce `terraform { required_version = ">= 0.12.0}"`
 
 **Service named files:**
 
 Often users want to create several files and separate terraform resources by service. This urge should be stifled as much as possible in favor defining resources in main.tf. If a collection of resources, for example IAM Roles and Policies, exceed 150 lines then it is reasonable to break that into its own files such as iam.tf. Otherwise all resource code should be defined in the main.tf.
 
-## Provider Configuration Guidelines:
+## Provider Configuration Guidelines
 
 Provider blocks should be declared in root modules by consumers of modules.
 
@@ -81,7 +83,7 @@ Provider blocks should not be declared in modules unless they are to specify `al
 
 It is OK to define a `awscc` `user_agent` block in a module because these are appended to the provider block inherited from the root module.
 
-## General HCL Configuration Guidelines:
+## General HCL Configuration Guidelines
 
 ### **Resource Meta Name**
 
@@ -376,7 +378,7 @@ Terraform allows you to provide formatted outputs from your modules. There are s
 
 ## Pull Request Guidelines
 
-Soon™ we will have a shared CI process across all I&A modules. In the mean time, documented here are the expectations for code submitted as a PR. Details about the upcoming CI can be found [here](https://quip-amazon.com/XOshArwrhqrl/Terraform-CI-Process).
+Soon™ we will have a shared CI process across all I&A modules. In the mean time, documented here are the expectations for code submitted as a PR. Details about the upcoming CI can be found in the FAQ.
 
 ### Documentation
 
@@ -388,23 +390,23 @@ You must also run `terraform fmt -recursive` in your root directory.
 
 Required Tools:
 
-* [tflint](https://github.com/terraform-linters/tflint)
-* [tfsec](https://aquasecurity.github.io/tfsec/v1.0.0-rc.4/)
-* [kics](https://kics.io/)
+* [tflint][]
+* [tfsec][]
+* [kics][]
 
-Run [tflint](https://github.com/terraform-linters/tflint):
+Run [tflint][]:
 
 ```
 tflint --only=terraform_deprecated_interpolation --only=terraform_deprecated_index --only=terraform_unused_declarations --only=terraform_comment_syntax --only=terraform_documented_outputs --only=terraform_documented_variables --only=terraform_typed_variables --only=terraform_module_pinned_source --only=terraform_naming_convention --only=terraform_required_version --only=terraform_required_providers --only=terraform_standard_module_structure --only=terraform_workspace_remote
 ```
 
-Run [tfsec](https://aquasecurity.github.io/tfsec/v1.0.0-rc.4/) in all root modules:
+Run [tfsec][] in all root modules:
 
 ```
 tfsec .
 ```
 
-Run [kics](https://kics.io/) in your root directory:
+Run [kics][] in your root directory:
 
 ```
 kics scan -p ./ -o ./
@@ -423,3 +425,7 @@ Release titles should be `vX.X.X`, tags should be `X.X.X`
 ## Publishing to Terraform Registry
 
 Each module must be published to the Terraform Registry once its ready for use. Once the entry is created, future tags flow automatically to the registry. The initial creation will soon be automated. In the meantime, please reach out to the I&A team to create initial registry entries for new modules.
+
+[tflint]: <https://github.com/terraform-linters/tflint> "tflint"
+[kics]: <https://kics.io/> "kics
+[tfsec]: <https://aquasecurity.github.io/tfsec/> "tfsec"
