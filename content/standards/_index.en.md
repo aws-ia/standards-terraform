@@ -425,6 +425,6 @@ Release titles should be `vX.X.X`, tags should be `X.X.X`
 
 Each module must be published to the Terraform Registry once its ready for use. Once the entry is created, future tags flow automatically to the registry. The initial creation will soon be automated. In the meantime, please reach out to the I&A team to create initial registry entries for new modules.
 
-[tflint]: <https://github.com/terraform-linters/tflint> "tflint"
-[kics]: <https://kics.io/> "kics
-[tfsec]: <https://aquasecurity.github.io/tfsec/> "tfsec"
+tflint: <https://github.com/terraform-linters/tflint>
+kics: <https://kics.io/>
+tfsec: <https://aquasecurity.github.io/tfsec/>
