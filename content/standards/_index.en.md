@@ -15,7 +15,7 @@ We have standardized on the official [Terraform Glossary](https://www.terraform.
 
 Publishing a Terraform module is the gold-standard for easing AWS customer on-boarding to new services. Modules allow for flexible but opinionated deployments that follow AWS best practices and enforce proper security.
 
-## Table of Contents:
+## Table of Contents
 
 * [Module Structure](#-module-structure)
 * [Provider Configuration Guidelines](#-provider-configuration-guidelines)
@@ -30,7 +30,7 @@ All modules must maintain a similar structure that contains module code, example
 
 ### **Example repo - [terraform-aws-label](https://github.com/aws-ia/terraform-aws-label):**
 
-```
+```bash
 $ tree
 ├── examples
 │   ├── basic
@@ -91,14 +91,14 @@ Resource meta names should be snake-cased and should be contextual to the resour
 
 **Examples:**
 
-```
+```hcl
 data "aws_region" "current" {}
 ```
 
 The resource meta name is “current” is contextual as the data provided is for the current region. It would be possible to create `data "aws_region" "alternative" {}` as well to provide region information for an alternative region.
 
 
-```
+```hcl
 resource "aws_route53recoveryreadiness_cell" "per_region" {
   for_each  = toset(var.regions)
   cell_name = "${var.name}-${each.value}"
@@ -129,7 +129,7 @@ You can delete `"private_subnet0"` without any fear of unintended consequences.
 Because lists can be so helpful, you will often find a situation where you have a list and you want to create a resource dynamically. Since `for_each` requires a map, convert your list to a set `toset(var.mylist)` and terraform will use each entry as a key. Example:
 
 
-```
+```hcl
 resource "aws_ssm_parameter" "params_from_list" {
   for_each = toset(["drew", "tony", "andy"])
 
@@ -148,7 +148,6 @@ $ terraform state show aws_ssm_parameter.params_from_list["drew"]
 name  = "drew"
 value = "drew"
 ... }
-
 ```
 
 ###  Default Tags
@@ -160,7 +159,7 @@ All resource that can accept tags should. The terraform `aws` provider has a `de
 If creating resources with both `aws` and `awscc` provider its helpful to have sanitized tags for each provider because the formats are different (`aws` is `{ tagname = tagvalue }` and `awscc` is `{ Key = tagname, Value = tagvalue }`. The [terraform-aws-label](https://github.com/aws-ia/terraform-aws-label) module can accept either provider version and outputs tags formatted for both.
 
 
-```
+```hcl
 module "aws_tags" {
   source = "aws-ia/label/aws"
 
@@ -196,7 +195,7 @@ Some resources have pseudo resources embedded as attributes in them. Where possi
 
 **Using embedded attribute (avoid this pattern):**
 
-```
+```hcl
 resource "aws_security_group" "allow_tls" {
   ...
   ingress {
@@ -220,7 +219,7 @@ resource "aws_security_group" "allow_tls" {
 
 **With attachment resources (preferred):**
 
-```
+```hcl
 resource "aws_security_group" "allow_tls" {
   ...
 }
@@ -263,7 +262,7 @@ Terraform allows you to [validate the content](https://www.terraform.io/language
 
 **Example: Can be either `assertion` or `gating`:**
 
-```
+```hcl
 variable "safety_rule_type" {
   description = "Type of safety rules to create. Can only be \"assertion\" or \"gating\"."
   type        = string
@@ -278,7 +277,7 @@ variable "safety_rule_type" {
 
 **Example: Key in map must look like a valid AWS Region:**
 
-```
+```hcl
 variable "cells_definition" {
   description = "Nested map where the key is a region you want to enable and keys referring to resource arns to enable. Services enabled are defined in `var.resource_type_name`. For examples, see the variables.tf file"
 
@@ -294,7 +293,7 @@ variable "cells_definition" {
 
 Terraform allows you to create [custom object types](https://www.terraform.io/language/values/variables#object) to constrain input that is allowed.
 
-```
+```hcl
 variable "safety_rules" {
   description = "Configuration of the Safety Rules. Key is the name applied to the rule."
 
@@ -310,7 +309,7 @@ variable "safety_rules" {
 
 The attributes may be made optional using the [experimental feature](https://www.terraform.io/language/expressions/type-constraints#experimental-optional-object-type-attributes) `module_variable_optional_attrs` which is set in your terraform block:
 
-```
+```hcl
 terraform {
   required_version = ">= 0.15.0"
   experiments      = [module_variable_optional_attrs]
@@ -346,7 +345,7 @@ Custom objects are very nice but if used with `optional()` the resultant keys ar
 
 **First key must be like a valid region, 2nd key must be contained in a list:**
 
-```
+```hcl
 /*
 cells_definition = {
   us-west-2 = {
@@ -396,19 +395,19 @@ Required Tools:
 
 Run [tflint][]:
 
-```
-tflint --only=terraform_deprecated_interpolation --only=terraform_deprecated_index --only=terraform_unused_declarations --only=terraform_comment_syntax --only=terraform_documented_outputs --only=terraform_documented_variables --only=terraform_typed_variables --only=terraform_module_pinned_source --only=terraform_naming_convention --only=terraform_required_version --only=terraform_required_providers --only=terraform_standard_module_structure --only=terraform_workspace_remote
+```bash
+$ tflint --only=terraform_deprecated_interpolation --only=terraform_deprecated_index --only=terraform_unused_declarations --only=terraform_comment_syntax --only=terraform_documented_outputs --only=terraform_documented_variables --only=terraform_typed_variables --only=terraform_module_pinned_source --only=terraform_naming_convention --only=terraform_required_version --only=terraform_required_providers --only=terraform_standard_module_structure --only=terraform_workspace_remote
 ```
 
 Run [tfsec][] in all root modules:
 
-```
+```bash
 tfsec .
 ```
 
 Run [kics][] in your root directory:
 
-```
+```bash
 kics scan -p ./ -o ./
 ```
 
