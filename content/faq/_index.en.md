@@ -46,9 +46,9 @@ In AWS I&A repos you will see a `user_agent` defined in the provider block. This
 
 ## Recommended deployment patterns for Terraform
 
-There are many ways to deploy or execute Terraform. We recommend either via [HashiCorp Terraform Cloud](https://github.com/aws-ia/terraform-hashicorp-cloud_workspace) or via [AWS S3 with DynamoDB for state locking](https://github.com/aws-ia/terraform-aws-backend-s3).
+There are many ways to deploy or execute Terraform. We recommend either via [HashiCorp Terraform Cloud](https://github.com/aws-ia/terraform-hashicorp-cloud_workspace) or via [AWS S3 with DynamoDB for state locking](https://www.terraform.io/language/settings/backends/s3).
 
 
 ## Are modules protected by CI Automation?
 
-Terraform Module pull requests (PRs) are subject to continuous integration (CI) automation for quality, linting, and security scanning. Due to internal decisions, we have built a CI process that is currently private to AWS employees only. It is a heavy work-in-progress and we intend to expose information about it ASAP.
+Terraform Module pull requests (PRs) are subject to continuous integration (CI) automation for quality, linting, and security scanning. We currently leverage [AWS CodePipeline](https://aws.amazon.com/codepipeline/) and [AWS CodeCommit](https://aws.amazon.com/codecommit/), a process that is private to AWS employees only. It is a heavy work-in-progress and we intend to expose information about it ASAP. For this reason, [GitHub Actions](https://github.com/features/actions) has been disabled. We are open to feedback on what should be included in our CI so please use your PR to discuss.
