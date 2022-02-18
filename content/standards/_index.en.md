@@ -13,7 +13,7 @@ We have standardized on the official [Terraform Glossary](https://www.terraform.
 
 **Why Focus on Modules?**
 
-Publishing a Terraform module is the gold-standard for easing AWS customer on-boarding to new services. Modules allow for flexible but opinionated deployments that follow AWS best practices and enforce proper security.
+Publishing a Terraform module is the gold-standard for easing AWS customer on-boarding to new services. Modules allow for flexible but opinionated deployments that follow AWS best practices and enforce proper security. For questions, please contact AWS I&A: <aws-ia-eng@amazon.com>
 
 ## Table of Contents
 
@@ -87,7 +87,7 @@ It is OK to define a `awscc` `user_agent` block in a module because these are ap
 
 ### **Resource Meta Name**
 
-Resource meta names should be snake-cased and should be contextual to the resource being created. Meta names should not be used generically, aka `aws_s3_bucket.this` and should not be repetitive, aka `aws_s3_bucket.bucket`.
+Resource meta names should be snake-cased and should be contextual to the resource being created. Meta names should not be used generically, aka `aws_s3_bucket.self` and should not be repetitive, aka `aws_s3_bucket.bucket`.
 
 **Examples:**
 
