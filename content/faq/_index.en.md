@@ -3,7 +3,7 @@ title = 'Frequently asked questions (FAQ)'
 linkTitle = 'FAQ'
 description = 'Frequently asked questions of the AWS Integration & Automation team about Terraform standards'
 date = '2022-01-12'
-weight = 999
+weight = 998
 chapter = true
 +++
 ## AWS providers and associated modules demystified
