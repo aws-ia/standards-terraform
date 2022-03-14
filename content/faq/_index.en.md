@@ -10,7 +10,7 @@ chapter = true
 
 Terraform leverages providers to interact with infrastructure resources. In the case of AWS, there are two official providers available that can be used; the AWS Provider for Terraform, and the Terraform AWS Cloud Control Provider (AWSCC) provider. The AWS Provider for Terraform has been in existence for over 14 years, and is hand coded (with some code generated). The AWSCC Provider is the newest provider and is automatically generated from the CloudFormation Registry which means new features and services can be supported in Terraform right away.
 
-Our partners at HashiCorp have a detailed blog post on this topic (https://www.hashicorp.com/blog/announcing-terraform-aws-cloud-control-provider-tech-preview). We encourage you to read that blog post.
+Our partners at HashiCorp have a detailed [blog post](https://www.hashicorp.com/blog/announcing-terraform-aws-cloud-control-provider-tech-preview) on this topic, and we encourage you to read it.
 
 The AWS Integration & Automation (AWS I&A) team authors and publishes Terraform modules that have validated provenance. Modules use specific providers in their implementation, and for convenience we have decided on a naming convention that will allow you to know what provider is being used by the module you are leveraging. This naming convention is `terraform-<provider>-<modulename>`.
 
