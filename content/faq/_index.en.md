@@ -52,3 +52,10 @@ There are many ways to deploy or execute Terraform. We recommend either via [Has
 ## Are modules protected by CI Automation?
 
 Terraform Module pull requests (PRs) are subject to continuous integration (CI) automation for quality, linting, and security scanning. We currently leverage [AWS CodePipeline](https://aws.amazon.com/codepipeline/) and [AWS CodeCommit](https://aws.amazon.com/codecommit/), a process that is private to AWS employees only. It is a heavy work-in-progress and we intend to expose information about it ASAP. For this reason, [GitHub Actions](https://github.com/features/actions) has been disabled. We are open to feedback on what should be included in our CI so please use your PR to discuss.
+
+## CloudFormation resources
+
+The [Terraform `aws` provider](https://registry.terraform.io/providers/hashicorp/aws/latest) includes an [AWS CloudFormation stack resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack) for deploying CloudFormation templates with Terraform.
+Despite this, the AWS I&A team does not permit these resources in our modules as of 2022-03-14, nor do we generally recommend using these, because the Terraform `aws` provider's CloudFormation stack resource does not support drift detection, nor does it record the resources deployed by the template in state.
+For example, we can easily deploy the [Linux Bastion Hosts on AWS Quick Start](https://aws.amazon.com/quickstart/architecture/linux-bastion/) CloudFormation template with Terraform, but if we were to disassociate and delete the Elastic IP (EIP) address deployed by CloudFormation template and then run `terraform apply` again, the Terraform `aws` provider does not initiate a call to CloudFormation to detect drift, and the resources deployed by CloudFormation are not stored in state, so the change is not detected by Terraform, leaving the deployment in a broken state.
+Given the risk this creates, the AWS I&A team chooses not to build with this at this resource until further notice.
