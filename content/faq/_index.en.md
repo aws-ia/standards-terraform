@@ -20,7 +20,6 @@ We standardize on semantic versioning to provide assurance of compatibility and 
 
 The AWS CloudControl API and associated AWSCC Provider for Terraform will enable our customers to leverage the newest features and services using the IaC tooling of their choice. The AWS I&A team will prefer the AWSCC Provider when authoring or updating module choice and. Provider and the CloudControl APIs we see the AWSCC Provider mature and move into GA, you will see our newest modules prefer to use the AWSCC Provider.
 
-
 ## What is the `user_agent`?
 
 ```terraform
@@ -47,7 +46,6 @@ In AWS I&A repos you will see a `user_agent` defined in the provider block. This
 ## Recommended deployment patterns for Terraform
 
 There are many ways to deploy or execute Terraform. We recommend either via [HashiCorp Terraform Cloud](https://github.com/aws-ia/terraform-hashicorp-cloud_workspace) or via [AWS S3 with DynamoDB for state locking](https://www.terraform.io/language/settings/backends/s3).
-
 
 ## Are modules protected by CI Automation?
 
