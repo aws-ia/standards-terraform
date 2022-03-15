@@ -40,7 +40,7 @@ In AWS I&A repos you will see a `user_agent` defined in the provider block. This
 - `comment`:
   - `V1`: Version 1 of our defined meta-data payload format.
   - `AWS-D69B4015`: A unique, searchable identifier.
-  - `376222271`: The github repo id, should be unique to each module and non-fungible. You can find a repo ID using `gh api repos/aws-ia/terraform-awscc-label | jq .id`. Download `gh` [here](https://cli.github.com/)
+  - `376222271`: The github repo id, should be unique to each module and non-fungible. You can find a repo ID using `gh api repos/aws-ia/terraform-awscc-label --jq .id`. Download `gh` [here](https://cli.github.com/)
 
 `user_agent` is a list with entries that are appeneded allowing you to define many in the same block and/or define one per module. We define a `user_agent` payload per module. This means that a Root module execution will push module meta data to your CloudTrail log.
 
