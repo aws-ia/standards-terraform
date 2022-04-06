@@ -17,12 +17,12 @@ Publishing a Terraform module is the gold-standard for easing AWS customer on-bo
 
 ## Table of Contents
 
-* [Module Structure](#-module-structure)
-* [Provider Configuration Guidelines](#-provider-configuration-guidelines)
-* [General HCL Configuration Guidelines](#-general-hcl-configuration-guidelines)
-* [Variable & Output Declaration Guidelines](#-variables-declaration-guidelines)
-* [Output Declaration Guidelines](#-output-guidelines)
-* [Pull Request Guidelines](#-pull-request-guidelines)
+* [Module Structure](#module-structure)
+* [Provider Configuration Guidelines](#provider-configuration-guidelines)
+* [General HCL Configuration Guidelines](#general-hcl-configuration-guidelines)
+* [Variable & Output Declaration Guidelines](#variables-declaration-guidelines)
+* [Output Declaration Guidelines](#output-guidelines)
+* [Pull Request Guidelines](#pull-request-guidelines)
 
 ## Module Structure
 
