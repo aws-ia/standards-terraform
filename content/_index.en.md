@@ -334,6 +334,44 @@ variable "hosted_zone" {
 }
 ```
 
+### Defaults.tf for Custom Objects
+
+When using variables with type `object` you can set defaults, however, if the user overrides even 1 attribute all defaults are overwritten. A way around this is by creating local variables that provide defaults in the absense of a particular value. Below is an example:
+
+We have a custom object "user" with a required name and optional age. If user does not specify age, we want the value to be "none of your business!".
+
+```terraform
+variable "user" {
+    type = object({
+      name = string
+      age  = optional(string)
+  })
+  default = {
+    name    = ""
+    age     = "none of your business!"
+  }
+}
+
+output "user" {
+  value = var.user
+}
+```
+
+However, with the above code `age` will be `null` value. We can get around this using the defaults.tf convention and then reference using the local instead of the variable. Name of the local should be identical to the variable.
+
+```terraform
+locals {
+  user = {
+    name = var.user.name
+    age = try(var.user.age, "none of your business")
+  }
+}
+
+output "user" {
+  value = local.user
+}
+```
+
 ### Validation vs Custom Objects
 
 Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hindrance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
