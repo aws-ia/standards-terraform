@@ -97,7 +97,6 @@ data "aws_region" "current" {}
 
 The resource meta name is “current” is contextual as the data provided is for the current region. It would be possible to create `data "aws_region" "alternative" {}` as well to provide region information for an alternative region.
 
-
 ```hcl
 resource "aws_route53recoveryreadiness_cell" "per_region" {
   for_each  = toset(var.regions)
@@ -128,7 +127,6 @@ You can delete `"private_subnet0"` without any fear of unintended consequences.
 
 Because lists can be so helpful, you will often find a situation where you have a list and you want to create a resource dynamically. Since `for_each` requires a map, convert your list to a set `toset(var.mylist)` and terraform will use each entry as a key. Example:
 
-
 ```hcl
 resource "aws_ssm_parameter" "params_from_list" {
   for_each = toset(["drew", "tony", "andy"])
@@ -150,14 +148,13 @@ value = "drew"
 ... }
 ```
 
-###  Default Tags
+### Default Tags
 
 All resource that can accept tags should. The terraform `aws` provider has a `default_tags` feature should not be used inside a module in favor of allowing the root module to define `default_tags`.
 
 ### Tags with AWSCC support
 
 If creating resources with both `aws` and `awscc` provider its helpful to have sanitized tags for each provider because the formats are different (`aws` is `{ tagname = tagvalue }` and `awscc` is `{ Key = tagname, Value = tagvalue }`. The [terraform-aws-label](https://github.com/aws-ia/terraform-aws-label) module can accept either provider version and outputs tags formatted for both.
-
 
 ```hcl
 module "aws_tags" {
@@ -235,8 +232,6 @@ resource "aws_security_group_rule" "example" {
   security_group_id = aws_security_group.allow_tls.id
 }
 ```
-
-
 
 ## Variables Declaration Guidelines
 
@@ -371,9 +366,9 @@ error_message = "Supported service names are the keys defined in var.resource_ty
 
 Terraform allows you to provide formatted outputs from your modules. There are several ways to think about these. Many times you can assume which output values will be most relevant to your end user. When choosing which values to output think about:
 
-- How will your module be used in a root module?
-- How will your module be used as a `data.terraform_remote_state`?
-- Does it make sense to output entire resources instead of formatted output?
+* How will your module be used in a root module?
+* How will your module be used as a `data.terraform_remote_state`?
+* Does it make sense to output entire resources instead of formatted output?
 
 ## Pull Request Guidelines
 
