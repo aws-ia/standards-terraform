@@ -270,19 +270,7 @@ variable "safety_rule_type" {
 }
 ```
 
-**Example: Key in map must look like a valid AWS Region:**
-
-```hcl
-variable "cells_definition" {
-  description = "Nested map where the key is a region you want to enable and keys referring to resource arns to enable. Services enabled are defined in `var.resource_type_name`. For examples, see the variables.tf file"
-
-  type = map(map(string))
-  validation {
-    condition = alltrue([for _, k in keys(var.cells_definition) : can(regex("[a-z][a-z]-[a-z]+-[1-9]", k))])
-    error_message = "Supported service names are the keys defined in var.resource_type_name ."
-  }
-}
-```
+More validation examples can be found [here.](https://dev.to/drewmullen/terraform-variable-validation-with-samples-1ank)
 
 ### Custom Objects
 
@@ -399,6 +387,41 @@ validation {
 error_message = "Supported service names are the keys defined in var.resource_type_name."
 }
 ```
+
+### Documenting Complex Maps
+
+Documenting maps with expected keys can be difficult. We will show an [example from our friends at Palo Alto](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69) of using a [heredoc](https://linuxize.com/post/bash-heredoc/) to express documentation in a human-readable format. Example is a shortened version from [here.](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69-L107)
+
+````terraform
+variable "interfaces" {
+  description = <<-EOF
+  Map of the network interface specifications. Available types include `mgmt`, `public`, and `private`. Types have associated options listed below.
+
+  Available options:
+  - `device_index`       = (Required|int) Determines order in which interfaces are attached to the instance. Interface with `0` is attached at boot time.
+  - `subnet_id`          = (Required|string) Subnet ID to create the ENI in.
+  - `name`               = (Optional|string) Name tag for the ENI. Defaults to instance name suffixed by map's key.
+
+  Example:
+  ```
+  interfaces = {
+    mgmt = {
+      device_index       = 0
+      subnet_id          = aws_subnet.mgmt.id
+      name               = "mgmt"
+    }
+  }
+  ```
+EOF
+
+  validation {
+    error_message = "Only valid key values for interface type are \"public\", \"private\", or \"mgmt\"."
+    condition = length(setsubtract(keys(var.subnets), [
+      "public",
+      "private",
+      "mgmt"
+    ])) == 0
+  }````
 
 ## Output Guidelines
 
