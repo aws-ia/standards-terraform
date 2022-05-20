@@ -420,6 +420,15 @@ Release titles should be `vX.X.X`, tags should be `X.X.X`
 
 Each module must be published to the Terraform Registry once its ready for use. Once the entry is created, future tags flow automatically to the registry. The initial creation will soon be automated. In the meantime, please reach out to the I&A team to create initial registry entries for new modules.
 
-[tflint]: https://github.com/terraform-linters/tflint
+## Disallowed resources
+
+The AWS I&A team does not permit the use of some resources in our modules for various reasons, such as the [AWS CloudFormation stack resource][tf_cfn] in the [`aws` provider][tf_aws], since it does not support drift detection, nor does it record the resources deployed by the template in state.
+The current list of disallowed resources can be found in the [tfsec][tfsec_cfg] & [tflint config][tflint_cfg] config files.
+
 [kics]: https://kics.io/
+[tf_aws]: https://registry.terraform.io/providers/hashicorp/aws/latest
+[tf_cfn]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack
+[tflint]: https://github.com/terraform-linters/tflint
+[tflint_cfg]: https://github.com/aws-ia/terraform-repo-template/blob/main/.tflint.hcl
 [tfsec]: https://aquasecurity.github.io/tfsec/
+[tfsec_cfg]: https://github.com/aws-ia/terraform-repo-template/tree/main/.tfsec
