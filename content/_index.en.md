@@ -68,7 +68,7 @@ Please include your `go.mod` and `go.sum` files after running `go mod init githu
 **Other common files:**
 
 * `data.tf` - Includes `locals` declarations and data sources. Note: its common to have an occasional local or data source in main.tf instead.
-* `alias.tf` - Included if you have alias’ed providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/alias.tf)
+* `alias.tf` - Included if you have aliased providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/alias.tf)
 * `versions.tf` - Alternate name for `provider.tf`. This convention comes from the `terraform0.12-upgrade` command where once terraform code was upgraded from v0.11.x to v0.12.x a `versions.tf` file was create to enforce `terraform { required_version = ">= 0.12.0}"`
 
 **Service named files:**
@@ -118,7 +118,7 @@ The resource meta name is contextual in that the resources created are looped ov
 
 ### `for_each` vs `count`
 
-Terraform can dynamically create resources using either [count](https://www.terraform.io/language/meta-arguments/count#the-count-meta-argument) or [for_each](https://www.terraform.io/language/meta-arguments/for_each). `for_each` should **always** be preferred over `count` except for circumstances where only count = 0 or 1. The reasoning for this comes from the behavior fundamental to lists vs maps; Lists are ordered; say you create 3 subnets `[subnet0, subnet1, subnet2]` . if you have to erase subnet 0 or 1, terraforms state file will see a change to the list and cause cascading unexpected changes. Using `for_each` resources are named using the map key
+Terraform can dynamically create resources using either [count](https://www.terraform.io/language/meta-arguments/count#the-count-meta-argument) or [for_each](https://www.terraform.io/language/meta-arguments/for_each). `for_each` should **always** be preferred over `count` except for circumstances where only count = 0 or 1. The reasoning for this comes from the behavior fundamental to lists vs maps; Lists are ordered; say you create 3 subnets `[subnet0, subnet1, subnet2]` . if you have to erase subnet 0 or 1, terraform's state file will see a change to the list and cause cascading unexpected changes. Using `for_each` resources are named using the map key
 
 `aws_subnet.test[0].id` vs `aws_subnet.test["private_subnet0"].id`
 
@@ -341,7 +341,7 @@ variable "hosted_zone" {
 
 ### Validation vs Custom Objects
 
-Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hinderance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
+Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hindrance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
 
 **First key must be like a valid region, 2nd key must be contained in a list:**
 
@@ -413,11 +413,11 @@ kics scan -p ./ -o ./
 
 **TODO**: update kics or tfsec (need to determine which) to ignore overlapping tests
 
-Your best judgement should be used when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the codebase.
+Your best judgment should be used when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the code base.
 
 ## Semantic Versioning
 
-Official releases should be published using Github tags and releases based on [semantic versioning](https://semver.org/) guidelines. Once 1.0.0 has been published, you must consider module functionality lifecycle, breaking changes must be marked accordingly.
+Official releases should be published using GitHub tags and releases based on [semantic versioning](https://semver.org/) guidelines. Once 1.0.0 has been published, you must consider module functionality lifecycle, breaking changes must be marked accordingly.
 
 Release titles should be `vX.X.X`, tags should be `X.X.X`
 

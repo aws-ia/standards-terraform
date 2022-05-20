@@ -34,14 +34,14 @@ provider "awscc" {
 
 In AWS I&A repos you will see a `user_agent` defined in the provider block. This is a [feature that was added to AWSCC](https://github.com/hashicorp/terraform-provider-awscc/pull/247) and is optional. `user-agent` data is passed to AWS Cloud Control APIs during `terraform apply`. This is useful for discovery and compliance purposes, as the user-agent for each API call is available as a CloudTrail event. Teams can use this data to identify workloads running in their account such as 3rd party products, OU's, etc. The above example defines 3 fields:
 
-- `product_name`: The user friendly name of the module / repo. github repo names are fungible.
+- `product_name`: The user friendly name of the module / repo. GitHub repo names are fungible.
 - `product_version`: The tag version of the module.
 - `comment`:
   - `V1`: Version 1 of our defined meta-data payload format.
   - `AWS-D69B4015`: A unique, searchable identifier.
-  - `376222271`: The github repo id, should be unique to each module and non-fungible. You can find a repo ID using `gh api repos/aws-ia/terraform-awscc-label --jq .id`. Download `gh` [here](https://cli.github.com/)
+  - `376222271`: The GitHub repo id, should be unique to each module and non-fungible. You can find a repo ID using `gh api repos/aws-ia/terraform-awscc-label --jq .id`. Download `gh` [here](https://cli.github.com/)
 
-`user_agent` is a list with entries that are appeneded allowing you to define many in the same block and/or define one per module. We define a `user_agent` payload per module. This means that a Root module execution will push module meta data to your CloudTrail log.
+`user_agent` is a list with entries that are appended allowing you to define many in the same block and/or define one per module. We define a `user_agent` payload per module. This means that a Root module execution will push module meta data to your CloudTrail log.
 
 ## Recommended deployment patterns for Terraform
 
