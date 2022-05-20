@@ -253,7 +253,7 @@ To account for situations like this, you can define the variable with a `default
 
 ### Variable Value Validation
 
-Terraform allows you to [validate the content](https://www.terraform.io/language/values/variables#custom-validation-rules) a user passes to a variable. This should be used as appropriate. Examples:
+Terraform allows you to [validate the content](https://www.terraform.io/language/values/variables#custom-validation-rules) a user passes to a variable. This will interrupt (error) before terraform is able to make any external calls. This should be used where user input is potentially subjective or when you inteded to prevent specific behaviors. A single variable can have many `validate` blocks and [only 1 validation per block](https://github.com/aws-ia/terraform-aws-vpc/blob/0639b346ec83c755135c3332b2725ab78dc6c0dc/variables.tf#L70-L172) should be performed. Examples:
 
 **Example: Can be either `assertion` or `gating`:**
 
