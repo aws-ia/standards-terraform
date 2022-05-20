@@ -360,9 +360,9 @@ output "user" {
 }
 ```
 
-### Validation vs Custom Objects
+### Limitations of Custom Objects
 
-Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hindrance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
+Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hinderance.](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
 
 **First key must be like a valid region, 2nd key must be contained in a list:**
 
