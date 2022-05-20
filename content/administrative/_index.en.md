@@ -24,7 +24,7 @@ The aws-ia Terraform standards are updated often. Please be sure to refer to thi
 Types of reuseable aws-ia Modules:
 
 * aws-ia Service Modules: A container that provides a sensible default for deploying an AWS service based on aws-ia standards (Example: VPC/Aurora/SQS)
-* aws-ia Partner Modules: A container that leverags one or more AWS Service Modules to build the infrastructure needed to instantiate an AWS partner product (Example: Magento)
+* aws-ia Partner Modules: A container that leverages one or more AWS Service Modules to build the infrastructure needed to instantiate an AWS partner product (Example: Magento)
 
 ## Module Structure
 
@@ -105,7 +105,7 @@ module "self_deployment_example" {
 ```
 
 * If the example terraform cloud deployment requires a VPC or any other AWS service, use the Terraform registry path.
-* Lock the version of any dependancies to the latest version at the time of release.
+* Lock the version of any dependencies to the latest version at the time of release.
 
 ```hcl
 module "vpc" {

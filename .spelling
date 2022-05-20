@@ -1,0 +1,58 @@
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# markdown-spellcheck spelling configuration file
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+apis
+aws-ia
+cfn
+changelog
+changelog.md
+cidr
+cloud_workspace
+cloudcontrol
+CloudFormation
+cloudtrail
+codecommit
+codepipeline
+config
+customizable
+docdock
+dynamodb
+for_each
+gantt
+grav
+gren
+HashiCorp
+iac
+iam.tf.
+ipsum
+kics
+lifecycle
+linkTitle
+lorem
+magento
+main.tf
+main.tf.
+MRs
+notice.txt
+pre
+prev
+readmes
+repo
+repos
+reuseable
+searchable
+sublicense
+subnet
+subnets
+terraform-aws-label
+terratest
+tflint
+tfsec
+v0.11.x
+v0.12.x
+v2
+valere
+versioning
+vjeantet

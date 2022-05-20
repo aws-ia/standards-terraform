@@ -68,7 +68,7 @@ Please include your `go.mod` and `go.sum` files after running `go mod init githu
 **Other common files:**
 
 * `data.tf` - Includes `locals` declarations and data sources. Note: its common to have an occasional local or data source in main.tf instead.
-* `alias.tf` - Included if you have alias’ed providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/alias.tf)
+* `alias.tf` - Included if you have aliased providers to declare, [example here.](https://github.com/aws-ia/terraform-aws-route53-recovery-controller/blob/main/alias.tf)
 * `versions.tf` - Alternate name for `provider.tf`. This convention comes from the `terraform0.12-upgrade` command where once terraform code was upgraded from v0.11.x to v0.12.x a `versions.tf` file was create to enforce `terraform { required_version = ">= 0.12.0}"`
 
 **Service named files:**
@@ -97,7 +97,6 @@ data "aws_region" "current" {}
 
 The resource meta name is “current” is contextual as the data provided is for the current region. It would be possible to create `data "aws_region" "alternative" {}` as well to provide region information for an alternative region.
 
-
 ```hcl
 resource "aws_route53recoveryreadiness_cell" "per_region" {
   for_each  = toset(var.regions)
@@ -118,7 +117,7 @@ The resource meta name is contextual in that the resources created are looped ov
 
 ### `for_each` vs `count`
 
-Terraform can dynamically create resources using either [count](https://www.terraform.io/language/meta-arguments/count#the-count-meta-argument) or [for_each](https://www.terraform.io/language/meta-arguments/for_each). `for_each` should **always** be preferred over `count` except for circumstances where only count = 0 or 1. The reasoning for this comes from the behavior fundamental to lists vs maps; Lists are ordered; say you create 3 subnets `[subnet0, subnet1, subnet2]` . if you have to erase subnet 0 or 1, terraforms state file will see a change to the list and cause cascading unexpected changes. Using `for_each` resources are named using the map key
+Terraform can dynamically create resources using either [count](https://www.terraform.io/language/meta-arguments/count#the-count-meta-argument) or [for_each](https://www.terraform.io/language/meta-arguments/for_each). `for_each` should **always** be preferred over `count` except for circumstances where only count = 0 or 1. The reasoning for this comes from the behavior fundamental to lists vs maps; Lists are ordered; say you create 3 subnets `[subnet0, subnet1, subnet2]` . if you have to erase subnet 0 or 1, terraform's state file will see a change to the list and cause cascading unexpected changes. Using `for_each` resources are named using the map key
 
 `aws_subnet.test[0].id` vs `aws_subnet.test["private_subnet0"].id`
 
@@ -127,7 +126,6 @@ You can delete `"private_subnet0"` without any fear of unintended consequences.
 ### Using `for_each` with a list
 
 Because lists can be so helpful, you will often find a situation where you have a list and you want to create a resource dynamically. Since `for_each` requires a map, convert your list to a set `toset(var.mylist)` and terraform will use each entry as a key. Example:
-
 
 ```hcl
 resource "aws_ssm_parameter" "params_from_list" {
@@ -150,14 +148,13 @@ value = "drew"
 ... }
 ```
 
-###  Default Tags
+### Default Tags
 
 All resource that can accept tags should. The terraform `aws` provider has a `default_tags` feature should not be used inside a module in favor of allowing the root module to define `default_tags`.
 
 ### Tags with AWSCC support
 
 If creating resources with both `aws` and `awscc` provider its helpful to have sanitized tags for each provider because the formats are different (`aws` is `{ tagname = tagvalue }` and `awscc` is `{ Key = tagname, Value = tagvalue }`. The [terraform-aws-label](https://github.com/aws-ia/terraform-aws-label) module can accept either provider version and outputs tags formatted for both.
-
 
 ```hcl
 module "aws_tags" {
@@ -235,8 +232,6 @@ resource "aws_security_group_rule" "example" {
   security_group_id = aws_security_group.allow_tls.id
 }
 ```
-
-
 
 ## Variables Declaration Guidelines
 
@@ -341,7 +336,7 @@ variable "hosted_zone" {
 
 ### Validation vs Custom Objects
 
-Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hinderance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
+Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hindrance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
 
 **First key must be like a valid region, 2nd key must be contained in a list:**
 
@@ -371,9 +366,9 @@ error_message = "Supported service names are the keys defined in var.resource_ty
 
 Terraform allows you to provide formatted outputs from your modules. There are several ways to think about these. Many times you can assume which output values will be most relevant to your end user. When choosing which values to output think about:
 
-- How will your module be used in a root module?
-- How will your module be used as a `data.terraform_remote_state`?
-- Does it make sense to output entire resources instead of formatted output?
+* How will your module be used in a root module?
+* How will your module be used as a `data.terraform_remote_state`?
+* Does it make sense to output entire resources instead of formatted output?
 
 ## Pull Request Guidelines
 
@@ -413,11 +408,11 @@ kics scan -p ./ -o ./
 
 **TODO**: update kics or tfsec (need to determine which) to ignore overlapping tests
 
-Your best judgement should be used when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the codebase.
+Your best judgment should be used when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the code base.
 
 ## Semantic Versioning
 
-Official releases should be published using Github tags and releases based on [semantic versioning](https://semver.org/) guidelines. Once 1.0.0 has been published, you must consider module functionality lifecycle, breaking changes must be marked accordingly.
+Official releases should be published using GitHub tags and releases based on [semantic versioning](https://semver.org/) guidelines. Once 1.0.0 has been published, you must consider module functionality lifecycle, breaking changes must be marked accordingly.
 
 Release titles should be `vX.X.X`, tags should be `X.X.X`
 
@@ -425,6 +420,15 @@ Release titles should be `vX.X.X`, tags should be `X.X.X`
 
 Each module must be published to the Terraform Registry once its ready for use. Once the entry is created, future tags flow automatically to the registry. The initial creation will soon be automated. In the meantime, please reach out to the I&A team to create initial registry entries for new modules.
 
-[tflint]: https://github.com/terraform-linters/tflint
+## Disallowed resources
+
+The AWS I&A team does not permit the use of some resources in our modules for various reasons, such as the [AWS CloudFormation stack resource][tf_cfn] in the [`aws` provider][tf_aws], since it does not support drift detection, nor does it record the resources deployed by the template in state.
+The current list of disallowed resources can be found in the [tfsec][tfsec_cfg] & [tflint config][tflint_cfg] config files.
+
 [kics]: https://kics.io/
+[tf_aws]: https://registry.terraform.io/providers/hashicorp/aws/latest
+[tf_cfn]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack
+[tflint]: https://github.com/terraform-linters/tflint
+[tflint_cfg]: https://github.com/aws-ia/terraform-repo-template/blob/main/.tflint.hcl
 [tfsec]: https://aquasecurity.github.io/tfsec/
+[tfsec_cfg]: https://github.com/aws-ia/terraform-repo-template/tree/main/.tfsec
