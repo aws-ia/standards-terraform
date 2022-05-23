@@ -17,12 +17,12 @@ Publishing a Terraform module is the gold-standard for easing AWS customer on-bo
 
 ## Table of Contents
 
-* [Module Structure](#-module-structure)
-* [Provider Configuration Guidelines](#-provider-configuration-guidelines)
-* [General HCL Configuration Guidelines](#-general-hcl-configuration-guidelines)
-* [Variable & Output Declaration Guidelines](#-variables-declaration-guidelines)
-* [Output Declaration Guidelines](#-output-guidelines)
-* [Pull Request Guidelines](#-pull-request-guidelines)
+* [Module Structure](#module-structure)
+* [Provider Configuration Guidelines](#provider-configuration-guidelines)
+* [General HCL Configuration Guidelines](#general-hcl-configuration-guidelines)
+* [Variable & Output Declaration Guidelines](#variables-declaration-guidelines)
+* [Output Declaration Guidelines](#output-guidelines)
+* [Pull Request Guidelines](#pull-request-guidelines)
 
 ## Module Structure
 
@@ -253,7 +253,7 @@ To account for situations like this, you can define the variable with a `default
 
 ### Variable Value Validation
 
-Terraform allows you to [validate the content](https://www.terraform.io/language/values/variables#custom-validation-rules) a user passes to a variable. This should be used as appropriate. Examples:
+Terraform allows you to [validate the content](https://www.terraform.io/language/values/variables#custom-validation-rules) a user passes to a variable. This will interrupt (error) before terraform is able to make any external calls. This should be used where user input is potentially subjective or when you inteded to prevent specific behaviors. A single variable can have many `validate` blocks and [only 1 validation per block](https://github.com/aws-ia/terraform-aws-vpc/blob/0639b346ec83c755135c3332b2725ab78dc6c0dc/variables.tf#L70-L172) should be performed. Examples:
 
 **Example: Can be either `assertion` or `gating`:**
 
@@ -270,19 +270,7 @@ variable "safety_rule_type" {
 }
 ```
 
-**Example: Key in map must look like a valid AWS Region:**
-
-```hcl
-variable "cells_definition" {
-  description = "Nested map where the key is a region you want to enable and keys referring to resource arns to enable. Services enabled are defined in `var.resource_type_name`. For examples, see the variables.tf file"
-
-  type = map(map(string))
-  validation {
-    condition = alltrue([for _, k in keys(var.cells_definition) : can(regex("[a-z][a-z]-[a-z]+-[1-9]", k))])
-    error_message = "Supported service names are the keys defined in var.resource_type_name ."
-  }
-}
-```
+More validation examples can be found [here.](https://dev.to/drewmullen/terraform-variable-validation-with-samples-1ank)
 
 ### Custom Objects
 
@@ -372,9 +360,9 @@ output "user" {
 }
 ```
 
-### Validation vs Custom Objects
+### Limitations of Custom Objects
 
-Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hindrance .](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
+Custom objects are very nice but if used with `optional()` the resultant keys are set within the object as `null` unless specified. This can occasionally [cause a hinderance.](https://discuss.hashicorp.com/t/experiment-feedback-optional-attribute-keys-should-not-be-included-in-variable-value-unless-specified/34063) Sometimes it is better to avoid defining a custom object and instead enforce organization using `validation` blocks instead. Example:
 
 **First key must be like a valid region, 2nd key must be contained in a list:**
 
@@ -399,6 +387,41 @@ validation {
 error_message = "Supported service names are the keys defined in var.resource_type_name."
 }
 ```
+
+### Documenting Complex Maps
+
+Documenting maps with expected keys can be difficult. We will show an [example from our friends at Palo Alto](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69) of using a [heredoc](https://linuxize.com/post/bash-heredoc/) to express documentation in a human-readable format. Example is a shortened version from [here.](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69-L107)
+
+````terraform
+variable "interfaces" {
+  description = <<-EOF
+  Map of the network interface specifications. Available types include `mgmt`, `public`, and `private`. Types have associated options listed below.
+
+  Available options:
+  - `device_index`       = (Required|int) Determines order in which interfaces are attached to the instance. Interface with `0` is attached at boot time.
+  - `subnet_id`          = (Required|string) Subnet ID to create the ENI in.
+  - `name`               = (Optional|string) Name tag for the ENI. Defaults to instance name suffixed by map's key.
+
+  Example:
+  ```
+  interfaces = {
+    mgmt = {
+      device_index       = 0
+      subnet_id          = aws_subnet.mgmt.id
+      name               = "mgmt"
+    }
+  }
+  ```
+EOF
+
+  validation {
+    error_message = "Only valid key values for interface type are \"public\", \"private\", or \"mgmt\"."
+    condition = length(setsubtract(keys(var.subnets), [
+      "public",
+      "private",
+      "mgmt"
+    ])) == 0
+  }````
 
 ## Output Guidelines
 
