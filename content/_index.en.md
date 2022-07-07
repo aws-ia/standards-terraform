@@ -392,7 +392,7 @@ error_message = "Supported service names are the keys defined in var.resource_ty
 
 Documenting maps with expected keys can be difficult. We will show an [example from our friends at Palo Alto](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69) of using a [heredoc](https://linuxize.com/post/bash-heredoc/) to express documentation in a human-readable format. Example is a shortened version from [here.](https://github.com/PaloAltoNetworks/terraform-aws-vmseries-modules/blob/3492f4248f60b14a47927dd7dd58dfcd5ddc9aca/modules/vmseries/variables.tf#L69-L107)
 
-````terraform
+```terraform
 variable "interfaces" {
   description = <<-EOF
   Map of the network interface specifications. Available types include `mgmt`, `public`, and `private`. Types have associated options listed below.
