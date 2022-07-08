@@ -402,16 +402,16 @@ variable "interfaces" {
   - `subnet_id`          = (Required|string) Subnet ID to create the ENI in.
   - `name`               = (Optional|string) Name tag for the ENI. Defaults to instance name suffixed by map's key.
 
-  Example:
-  ```
-  interfaces = {
-    mgmt = {
-      device_index       = 0
-      subnet_id          = aws_subnet.mgmt.id
-      name               = "mgmt"
+    Example:
+    ```
+    interfaces = {
+      mgmt = {
+        device_index       = 0
+        subnet_id          = aws_subnet.mgmt.id
+        name               = "mgmt"
+      }
     }
-  }
-  ```
+    ```
 EOF
 
   validation {
@@ -434,7 +434,7 @@ Terraform allows you to provide formatted outputs from your modules. There are s
 
 ## Pull Request Guidelines
 
-Soon™ we will have a shared CI process across all I&A modules. In the mean time, documented here are the expectations for code submitted as a PR. Details about the upcoming CI can be found in the FAQ.
+IA provides a template repo as a base for each module repo. Included is a set of linting and security tools that run whenever you attempt a `git commit` action, once the pre-commit is installed. To run the tools automatically you must install the dependencies and the pre-commit, instructions [here](https://github.com/aws-ia/terraform-repo-template#tldr). The helps shift feedback left to the development phase and is the mechanism our CI uses for PR checks.
 
 ### Documentation
 
@@ -444,39 +444,15 @@ You must also run `terraform fmt -recursive` in your root directory.
 
 ### Static Analysis
 
-Required Tools:
+IA runs security with a number of [custom checks](https://github.com/aws-ia/terraform-repo-template/tree/main/.tfsec). These are provided in a pre-commit and are also run during CI.
 
-* [tflint][]
-* [tfsec][]
-* [kics][]
-
-Run [tflint][]:
-
-```bash
-$ tflint --only=terraform_deprecated_interpolation --only=terraform_deprecated_index --only=terraform_unused_declarations --only=terraform_comment_syntax --only=terraform_documented_outputs --only=terraform_documented_variables --only=terraform_typed_variables --only=terraform_module_pinned_source --only=terraform_naming_convention --only=terraform_required_version --only=terraform_required_providers --only=terraform_standard_module_structure --only=terraform_workspace_remote
-```
-
-Run [tfsec][] in all root modules:
-
-```bash
-tfsec .
-```
-
-Run [kics][] in your root directory:
-
-```bash
-kics scan -p ./ -o ./
-```
-
-**TODO**: update kics or tfsec (need to determine which) to ignore overlapping tests
-
-Your best judgment should be used when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the code base.
+Use your best judgment when ignoring linting & security findings. For precarious `ignore`s please provide an explanation in the PR and/or via comment in the code base.
 
 ## Semantic Versioning
 
 Official releases should be published using GitHub tags and releases based on [semantic versioning](https://semver.org/) guidelines. Once 1.0.0 has been published, you must consider module functionality lifecycle, breaking changes must be marked accordingly.
 
-Release titles should be `vX.X.X`, tags should be `X.X.X`
+Release titles and tags should be `vX.X.X`
 
 ## Publishing to Terraform Registry
 
